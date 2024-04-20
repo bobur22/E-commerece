@@ -1,5 +1,5 @@
 <h1 align="center"> 👋 This is my E-commerce project and it's by name related on shopping clothes</h1>
-<h3 align="center">A passionate frontend developer from Uzbekistan</h3>
+<h3 align="center">A passionate full-stack developer from Uzbekistan</h3>
 <h1> Intro </h1>
 
 
