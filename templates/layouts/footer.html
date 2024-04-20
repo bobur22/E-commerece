@@ -1,0 +1,84 @@
+{% load static %}
+
+{#{% if request.user.is_authenticated %}#}
+{#<section id="newsletter" class="section-p1 sectoin-m1"#}
+{#         style="background-image: url({% static 'main/img/banner/b14.png' %});">#}
+{#    <div class="newstext">#}
+{#        <h4>Sign Up</h4>#}
+{#        <p>Get E-mail registration and <span>special offers to your email.</span></p>#}
+{#    </div>#}
+{#    <form method="POST" action="{% url 'user:registration' %}" class="form">#}
+{#        {% csrf_token %}#}
+{#        <input type="email" name="email" placeholder="Your email address" style="margin: 0">#}
+{#        <button type="submit" class="normal">Sign Up</button>#}
+{#    </form>#}
+{#</section>#}
+{##}
+{#{% else %}#}
+
+<section id="newsletter" class="section-p1 sectoin-m1"
+         style="background-image: url({% static 'main/img/banner/b14.png' %});">
+    <div class="newstext">
+        <h4>Sign Up For Newsletter</h4>
+        <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+    </div>
+    <form method="POST" action="{% url 'e_commerce:emailupdate' %}" class="form">
+        {% csrf_token %}
+        <input type="email" hx-post="/check_username/" hx-trigger="keyup" hx-target="username-error" name="email" placeholder="Your email address" style="margin: 0">
+        <button type="submit" class="normal">Sign Up</button>
+    </form>
+</section>
+{#{% endif %}#}
+
+<footer class="section-p1">
+    <div class="col">
+        <img class="logo" src="{% static 'main/img/logo.png' %}" alt="">
+        <h4>Contact</h4>
+        <p><strong>Address: </strong>2301 VanderbiltPlace, Nashville, Tennessee</p>
+        <p><strong>Phone: </strong><a href="tel:+16152431501" class="text-decoration-none" style="color: #555">+1 (615)
+            243 1501</a></p>
+        <p><strong>Hours: </strong>10:00 a.m.-- 5:00 p.m., Mon--Fri</p>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="icon">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h4>About</h4>
+        <a href="{% url 'e_commerce:blog' %}">About Us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="{% url 'e_commerce:contact' %}">Contact Us</a>
+    </div>
+
+    <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="{% url 'e_commerce:cart' %}">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track My Orders</a>
+        <a href="#">Help</a>
+    </div>
+
+    <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Goolge Play</p>
+        <div class="raw">
+            <img src="{% static 'main/img/pay/app.jpg' %}" alt="">
+            <img src="{% static 'main/img/pay/play.jpg' %}" alt="">
+        </div>
+        <p>Secured Payment Gateways</p>
+        <img src="{% static 'main/img/pay/pay.png' %}" alt="">
+    </div>
+
+    <div class="copyright">
+        <p>© 2022, Xavier Tong</p>
+    </div>
+</footer>

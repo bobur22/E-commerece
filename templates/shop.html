@@ -1,0 +1,77 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page-title %}
+    Shop
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+    <section id="page-header" style="background-image: url({% static 'main/img/banner/b1.jpg' %});">
+
+        <h2>#Stayhome</h2>
+
+        <p>Save more with coupons & up to 70% off!</p>
+
+    </section>
+
+
+
+    <section id="product1" class="section-p1">
+
+        <div class="pro-container">
+            {% for pr in page_obj %}
+
+                <div class="pro" onclick="window.location.href='sproduct.html';" >
+                    <a href="{% url 'e_commerce:pdetail' id=pr.id %}" class="text-decoration-none"><img
+                            src="{{ pr.album.first.images.first.image.url }}" alt=""/></a>
+                    <div class="des">
+                        <span>adidas</span>
+                        <a href="{% url 'e_commerce:pdetail' id=pr.id %}" class="text-decoration-none">
+                            <h5>{{ pr.name }}</h5></a>
+                        <div class="star">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <a href="{% url 'e_commerce:pdetail' id=pr.id %}" class="text-decoration-none"><h4>
+                            ${{ pr.price|floatformat }}</h4></a>
+                    </div>
+                    <a href="{% url 'e_commerce:addcart' id=pr.id %}"><i class="fal fa-shopping-cart cart"></i></a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="pagination" class="section-p1">
+        {% if page_obj.has_previous %}
+            <a class="me-1" href="?page={{ page_obj.previous_page_number }}"
+               aria-label="Previous">
+                <i class="fal fa-long-arrow-alt-left"></i>
+            </a>
+        {% endif %}
+
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <a class="active py-3 mx-1 px-4"
+                >{{ i }}</a>
+
+            {% elif i > page_obj.number|add:'-8' and i < page_obj.number|add:'8' %}
+                <a class=""
+                   href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+
+            {% elif i == page_obj.number|add:'-8' or i == page_obj.number|add:'8' %}
+                <a class="py-3 mx-1 px-4" href="#">...</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <i class="fal fa-long-arrow-alt-right"></i>
+            </a>
+        {% endif %}
+    </section>
+
+{% endblock %}

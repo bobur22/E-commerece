@@ -1,0 +1,99 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page-title %}
+    Product detail
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="{{ product_d.album.first.images.first.image.url }}" width="100%" id="MainImg" alt=""/>
+            <div class="small-img-group pt-1">
+{#                {% if product_d.album.images.all %}#}
+                    {% for album in product_d.album.all %}
+                        {% for image in album.images.all %}
+                        <div class="small-img-col">
+                            <img
+                                    src="{{ image.image.url }}"
+                                    width="100%"
+                                    class="small-img"
+                                    alt=""
+                            />
+                        </div>
+                            {% endfor %}
+                    {% endfor %}
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h6>Shop / {{ product_d.name }}</h6>
+            <h4>{{ product_d.name }}</h4>
+            <h2>${{ product_d.price|floatformat:2 }}</h2>
+            <select>
+                <option>Select Size</option>
+                <option>XL</option>
+                <option>XXL</option>
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+            </select>
+            <input type="number" value="1"/>
+            <a href="{% url 'e_commerce:addcartprd' id=product_d.id %}" class="text-decoration-none text-white"><button class="normal">Add To Cart</button></a>
+            <h4>Products Details</h4>
+            <span>{{ product_d.detail }}</span>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Featured Products</h2>
+        <p>Summer Collection New Modern Design</p>
+        <div class="pro-container">
+            {% for pr in product_m %}
+
+                <div class="pro" onclick="window.location.href='sproduct.html';">
+                    <a href="{% url 'e_commerce:pdetail' id=pr.id %}" class="text-decoration-none"><img
+                            src="{{ pr.album.first.images.first.image.url }}" alt=""/>
+                        <div class="des">
+                            <span>adidas</span>
+                            <h5>{{ pr.name }}</h5>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>${{ pr.price }}</h4>
+                        </div>
+                    </a>
+                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        var MainImg = document.getElementById("MainImg");
+        var smallimg = document.getElementsByClassName("small-img");
+
+        smallimg[0].onclick = function () {
+            MainImg.src = smallimg[0].src;
+        };
+        smallimg[1].onclick = function () {
+            MainImg.src = smallimg[1].src;
+        };
+        smallimg[2].onclick = function () {
+            MainImg.src = smallimg[2].src;
+        };
+        smallimg[3].onclick = function () {
+            MainImg.src = smallimg[3].src;
+        };
+    </script>
+
+{% endblock %}

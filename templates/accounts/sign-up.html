@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block page-title %}
+    Registration
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+    <section class="auth_section">
+        <div class="auth_container">
+            <div class="auth_img">
+                <img src="{% static 'main/img/auth-image.png' %}" alt="" class="auth_image"/>
+            </div>
+            <div class="auth_content">
+                <form method="POST" action="{% url 'user:registration' %}" class="auth_form">
+                    {% csrf_token %}
+                    <h2 class="form_title">Create your account</h2>
+                    <p class="auth_p">Enter your details below</p>
+
+                    {#                    {{ form|crispy }}#}
+
+
+                    {% for i in form %}
+
+                        <div class="form_group">
+                        {#                        <input type="text" placeholder="Username" name="username" class="form_input"/>#}
+                        <label class="pt-3" style="color: rgb(33, 37, 41)">{{ i.label }}</label>
+                        {{ i }}
+
+                    {% endfor %}
+                    </div>
+                    <div class="form_group">
+                        {#                        <input type="email" placeholder="Email" name="email" class="form_input"/>#}
+                    </div>
+                    <div class="form_group form_pass">
+                        {#                        <input#}
+                        {#                                type="password"#}
+                        {#                                placeholder="Password"#}
+                        {#                                name="password"#}
+                        {#                                class="form_input"/>#}
+                    </div>
+                    <div class="form_group form_pass">
+                        {#                        <input#}
+                        {#                                type="password"#}
+                        {#                                placeholder="Confirm password"#}
+                        {#                                name="password_c"#}
+                        {#                                class="form_input"/>#}
+                    </div>
+
+                    {#                    {% endfor %}#}
+
+                    <div class="form_group pt-5">
+                        <button class="form_btn" type="submit">
+                            Create Account
+                        </button>
+                    </div>
+                    <div class="form_group">
+              <span>Already have an account?
+                <a href="{% url 'user:login' %}" class="form_auth_link text-decoration-none">Login</a>
+              </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

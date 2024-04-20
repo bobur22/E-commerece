@@ -1,0 +1,54 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page-title %}
+    About
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+    <section id="page-header" class="about-header" style="background-image: url({% static 'main/img/about/banner.png' %});">
+        <h2>#know_us</h2>
+
+        <p>Learn about our products</p>
+    </section>
+
+    <section id="about-head" class="section-p1">
+        <img src="{% static 'main/img/about/a6.jpg' %}" alt=""/>
+        <div>
+            <h2>Who We Are?</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
+                aperiam aut! Aspernatur, esse illo ipsam animi ducimus tempora est
+                pariatur assumenda error aperiam corporis ut iure nobis repellat
+                officiis, alias fugit, nesciunt natus autem cupiditate doloribus
+                adipisci. Dignissimos incidunt, iusto sit earum consequatur odit
+                explicabo, id pariatur sunt consectetur reiciendis?
+            </p>
+            <br/>
+
+            <abbr title=""
+            >Create stunning images with as much or as little control as you like
+                thanks to a choice of Basic and Creative modes.</abbr
+            >
+
+            <br/><br/>
+
+            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%"
+            >Create stunning images with as much or as little control as you like
+                thanks to a choice of Basic and Creative modes.
+            </marquee>
+        </div>
+    </section>
+
+    <section id="about-app" class="section-p1">
+        <h1>Download Our <a href="#">App</a></h1>
+        <div class="video">
+            <video autoplay muted loop src="{% static 'main/img/about/1.mp4' %}"></video>
+        </div>
+    </section>
+
+{% endblock %}

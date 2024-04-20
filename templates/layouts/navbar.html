@@ -1,0 +1,71 @@
+{% load static %}
+{% load my_tags %}
+{% count_cart request as count %}
+<section id="header">
+    <a href="#"><img src="{% static 'main/img/logo.png' %}" class="logo" alt=""/></a>
+    <div>
+        <ul id="navbar">
+
+            {% url 'e_commerce:home' as home %}
+            <li><a class="{% if request.path ==  home %}
+            	active
+            {% endif %} " href="{% url 'e_commerce:home' %}">Home</a></li>
+
+            {% url 'e_commerce:shop' as shop %}
+            <li><a class="{% if request.path ==  shop %}
+            	active
+            {% endif %}" href="{% url 'e_commerce:shop' %}">Shop</a></li>
+
+            {% url 'e_commerce:blog' as blog %}
+            <li><a class="{% if request.path == blog %}
+            	active
+            {% endif %} " href="{% url 'e_commerce:blog' %}">Blog</a></li>
+
+            {% url 'e_commerce:about' as about %}
+            <li><a class="{% if request.path == about %}
+            	active
+            {% endif %} " href="{% url 'e_commerce:about' %}">About</a></li>
+
+            {% url 'e_commerce:contact' as contact %}
+            <li><a class="{% if request.path == contact %}
+            	active
+            {% endif %} " href="{% url 'e_commerce:contact' %}">Contact</a></li>
+
+            {% url 'e_commerce:cart' as cart %}
+            <li id="lg-bag"><a class="{% if request.path == cart %}
+            	active
+            {% endif %} " href="{% url 'e_commerce:cart' %}"><i class="far fa-shopping-bag"><sub
+                    class="ps-1 pt-1">{{ count }}</sub></i></a></li>
+
+            {% url 'e_commerce:cart' as cart %}
+            <li id="lg-bag"><a class="{% if request.path == cart %}
+            	active
+            {% endif %} " href="{% url 'e_commerce:cart' %}"><i class="fa-regular fa-heart"></i></a></li>
+
+            {% if request.user.is_authenticated %}
+                {% url 'user:logout' as logout %}
+                <li id="lg-bag"><a class="{% if request.path == login %}
+            	active
+            {% endif %} " href="{% url 'user:logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+
+            {% else %}
+                {% url 'user:login' as login %}
+                <li id="lg-bag"><a class="{% if request.path == login %}
+            	active
+            {% endif %} " href="{% url 'user:login' %}"><i class="fa-regular fa-user"></i></a></li>
+            {% endif %}
+            <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+    </div>
+    <div id="mobile">
+        {% url "e_commerce:cart" as cart %}
+        <a class="{% if request.path == cart %}
+        	active
+        {% endif %} " href="{% url "e_commerce:cart" %}"><i class="far fa-shopping-bag"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+        {% url 'user:login' as login %}
+        <li id="lg-bag"><a class="{% if request.path == login %}
+            	active
+            {% endif %} " href="{% url 'user:login' %}"><i class="fa-regular fa-user"></i></a></li>
+    </div>
+</section>

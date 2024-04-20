@@ -1,0 +1,69 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load my_tags %}
+{% count_cart request as count %}
+
+{% block page-title %}
+    Card
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+    <!------------------------------ cart items details------------------------------>
+
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+
+            {% for products_cart in product %}
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="{{ products_cart.album.first.images.first.image.url }}">
+                            <div>
+                                <p>{{ products_cart.name }}</p>
+                                <small>Price: ${{ products_cart.price|floatformat:2 }}</small><br>
+                                <a href="{% url 'e_commerce:removecart' id=products_cart.id %}" class="text-decoration-none">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><i>{{ count }}</i></td>
+                    <td>${{ products_cart.price|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div class="total-price pt-1">
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>${{ subtotal|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>$35.00</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>${{ total|floatformat }}</td>
+                </tr>
+                <tr class="">
+                    <td class="text-center w-100">
+                        <button class="card_b w-100 py-2 ms-5 mt-2 rounded-4">Order Now</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

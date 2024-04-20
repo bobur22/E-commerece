@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page-title %}
+    Contact
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+    <section id="page-header" class="about-header"
+             style="background-image: url({% static 'main/img/about/banner.png' %});">
+        <h2>#let's_talk</h2>
+
+        <p>Contact us, don't hesitate</p>
+    </section>
+
+    <section id="contact-details" class="section-p1">
+        <div class="details">
+            <span>GET IN TOUCH</span>
+            <h2>Visit one of our agency locations or contact us today</h2>
+            <h3>Head office</h3>
+            <div>
+                <li>
+                    <i class="fal fa-map"></i>
+                    <p>2301 VanderbiltPlace</p>
+                </li>
+                <li>
+                    <i class="fal fa-envelope"></i>
+                    <p><a href="mailto:xaviertong@gmail.com" class="text-decoration-none" style="color: #555">xaviertong@gmail.com</a>
+                    </p>
+                </li>
+                <li>
+                    <i class="fal fa-phone-alt"></i>
+                    <p><a href="tel:+13975336160" class="text-decoration-none" style="color: #555">13975336160</a></p>
+                </li>
+                <li>
+                    <i class="fal fa-clock"></i>
+                    <p>Monday to Friday: 10a.m. to 5p.m.</p>
+                </li>
+            </div>
+        </div>
+
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3221.8977270685973!2d-86.80484378467035!3d36.14470338008875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886466a4a6ef8047%3A0xea511455173915d6!2sVanderbilt%20University!5e0!3m2!1sen!2sus!4v1663816356223!5m2!1sen!2sus"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section id="form-details">
+        <form method="POST" action="{% url 'e_commerce:contact' %}">
+            {% csrf_token %}
+            <span>LEAVE A MESSAGE</span>
+            <h2>We love to hear from you</h2>
+            <input type="text" name="name" placeholder="Your name">
+            <input type="email" name="email" placeholder="Email">
+            <input type="text" name="subject" placeholder="Subject">
+            <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message"
+                      style="resize: none"></textarea>
+            <button class="normal rounded-4 px-5" type="submit">Submit</button>
+        </form>
+
+        <div class="people ps-4">
+            {% for i in contact_m %}
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'main/img/user_image_2.webp' %}" alt="">
+                    <p><span>{{ i.name }}</span>Message: {{ i.message|truncatewords:2 }} <br> unknown
+                        <br>Email:{{ i.email }}
+                    </p>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+{% endblock %}

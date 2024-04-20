@@ -1,0 +1,53 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page-title %}
+    Login
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+    <section class="auth_section">
+        <div class="auth_container">
+            <div class="auth_img">
+                <img src="{% static 'main/img/auth-image.png' %}" alt="" class="auth_image"/>
+            </div>
+            <div class="auth_content">
+                <form method="POST" action="{% url 'user:login' %}" class="auth_form">
+                    {% csrf_token %}
+                    <h2 class="form_title">Login to your account</h2>
+                    <p class="auth_p">Enter your details below</p>
+                    <div class="form_group">
+                        <input type="text" hx-post="/check_username/" hx-trigger="keyup" hx-target="#username-error"
+                               name="username" placeholder="Username" class="form_input mb-2"/>
+                        <div id="username-error" class="ps-5" style="color:#0a53be"></div>
+                    </div>
+                    <div class="form_group form_pass">
+                        <input
+                                type="password"
+                                placeholder="Password"
+                                class="form_input"
+                                name="password"/>
+                    </div>
+                    <div class="form_group">
+                        <button class="form_btn">
+                            <a href="#" class="form_link text-decoration-none">Login</a>
+                        </button>
+                    </div>
+                    <div class="form_group">
+              <span
+              >Don't have an account?
+                <a href="{% url "user:registration" %}" class="form_auth_link text-decoration-none"
+                >Register</a
+                ></span
+              >
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
