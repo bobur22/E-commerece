@@ -6,7 +6,7 @@
 ## Before start pull my files to your lap top.
     git clone git@github.com:bobur22/E-commerece.git
 ## And then open your terminal and start creating by env file
-      python3 install -m venv .env
+      python3 -m venv .env
 ## then activate env file.
 ## And after that start with installing requirements.txt
     pip install -r requirements.txt
